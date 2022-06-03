@@ -1,9 +1,7 @@
 // Dependencies
 import React from "react";
-
 // Pages
 import Index from "./pages/Index/Index";
-
 // Styles
 import "./tailwind.output.css";
 
