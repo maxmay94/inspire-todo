@@ -1,7 +1,7 @@
 
 const BASE_URL = `https://jsonplaceholder.typicode.com/`
 
-const getAllTodos = async() => {
+export const getAllTodos = async() => {
   try {
     const res = await fetch(`${BASE_URL}todos`)
     const data = await res.json()
@@ -11,6 +11,10 @@ const getAllTodos = async() => {
   }
 }
 
-export {
-  getAllTodos
+export const deleteTodo = async() => {
+  try{
+
+  } catch(err) {
+    throw err
+  }
 }
