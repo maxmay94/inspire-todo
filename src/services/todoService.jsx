@@ -11,9 +11,11 @@ export const getAllTodos = async() => {
   }
 }
 
-export const deleteTodo = async() => {
+export const deleteTodo = async(todoId) => {
   try{
-
+    await fetch(`${BASE_URL}${todoId}`, {
+      method: 'DELETE'
+    })
   } catch(err) {
     throw err
   }

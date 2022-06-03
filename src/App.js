@@ -1,11 +1,8 @@
 // Dependencies
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-// Componenets
-import Todo from "./components/Todo/Todo";
-
-// Services
-import * as todoService from './services/todoService';
+// Pages
+import Index from "./pages/Index/Index";
 
 // Styles
 import "./tailwind.output.css";
@@ -14,31 +11,13 @@ import "./tailwind.output.css";
 
 const App = () => {
 
-  const[todos, setTodos] = useState([{}])
-
-  useEffect(() => {
-    const fetchAllTodos = async() => {
-      const todoData = await todoService.getAllTodos()
-      setTodos(todoData)
-    }
-    fetchAllTodos()
-  }, [])
-
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="w-3/4 mx-auto shadow mt-24 px-4 py-4 rounded border border-gray-300">
-        <h1 className="font-bold">Todo List</h1>
+    <div className="min-h-screen">
+      <div className="w-3/4 mx-auto shadow mt-10 px-4 py-4 rounded border border-gray-300 flex">
+        <h1 className="font-bold flex-1">Todo List</h1>
+        <button className="bg-green-500 hover:bg-green-600 p-1 rounded">Add Todo</button>
       </div>
-      <div>
-        {
-          todos&&
-          todos?.map((todo, i) => (
-            <div key={i}> 
-              <Todo todo={todo} />
-            </div>
-          ))
-        }
-      </div>
+        <Index />
     </div>
   );
 };
