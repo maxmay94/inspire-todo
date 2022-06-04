@@ -4,9 +4,9 @@ const Todo = ({todo, handleDeleteTodo, handleEditTodo, handleCompleteTodo}) => {
 
   let decoration = +!todo.completed ? '' : 'line-through'
 
-  let background = todo.completed ? 
-    'w-3/4 mx-auto shadow mt-4 px-4 py-4 rounded border border-red-300 bg-red-200'
-    : 'w-3/4 mx-auto shadow mt-4 px-4 py-4 rounded border border-green-300 bg-green-200' 
+  let background = +!todo.completed ? 
+    'w-3/4 mx-auto shadow mt-4 px-4 py-4 rounded border border-green-300 bg-green-200' 
+    : 'w-3/4 mx-auto shadow mt-4 px-4 py-4 rounded border border-red-300 bg-red-200'
   
   return(
     <div className={background}>
@@ -21,7 +21,7 @@ const Todo = ({todo, handleDeleteTodo, handleEditTodo, handleCompleteTodo}) => {
           className='bg-green-600 hover:bg-green-700 p-1 rounded flex-1 mx-2'
           onClick={() => handleCompleteTodo(todo.id, todo.completed)}
         >
-          {todo.completed ? 'Did\'t actually do it yet' : 'Mark it done!'}
+          {+!todo.completed ? 'Mark it done!' : 'Did\'t actually do it yet'}
         </button>
         
         <button 

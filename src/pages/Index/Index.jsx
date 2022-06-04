@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Todo from "../../components/Todo/Todo";
 
 // Services
-import { getAllTodos, deleteTodo, completeTodo, editTodo } from '../../services/todoService';
+import { getAllTodos, deleteTodo, completeTodo, editTodo, addTodo } from '../../services/todoService';
 
 const Index = (props) => {
   const[todos, setTodos] = useState([{}])
@@ -16,7 +16,20 @@ const Index = (props) => {
       setTodos(todoData)
     }
     fetchAllTodos()
+
+    // return () => { setTodos([{}]) }
+
   }, [])
+
+  const handleAddTodo = async() => {
+    try {
+      await addTodo()
+      const todoData = await getAllTodos()
+      setTodos(todoData)
+    } catch (err) {
+      throw err
+    }
+  }
 
   const handleDeleteTodo = async(todoId) => {
     try {
@@ -55,7 +68,9 @@ const Index = (props) => {
           todos&&
           todos?.map((todo, i) => (
             <div key={i}> 
-              <Todo todo={todo} handleDeleteTodo={handleDeleteTodo} handleCompleteTodo={handleCompleteTodo} handleEditTodo={handleEditTodo} />
+              <Todo todo={todo} handleAddTodo={handleAddTodo} handleDeleteTodo={handleDeleteTodo} 
+                handleCompleteTodo={handleCompleteTodo} handleEditTodo={handleEditTodo} 
+              />
             </div>
           ))
         }

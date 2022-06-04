@@ -11,6 +11,21 @@ export const getAllTodos = async() => {
   }
 }
 
+export const addTodo = async() => {
+  fetch(`${BASE_URL}`, {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'foo',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+}
+
 export const deleteTodo = async(todoId) => {
   console.log('DELETE SERVICE --> ' + todoId)
   try{
@@ -23,21 +38,7 @@ export const deleteTodo = async(todoId) => {
 }
 
 export const completeTodo = async(todoId, done) => {
-  // done = !done
-  // try {
-  //   const res = await fetch(`${BASE_URL}${todoId}`, {
-  //     method: 'PATCH',
-  //     body: JSON.stringify({
-  //       completed: !done
-  //     })
-  //   })
-  //   const data = await res.json()
-  //   console.log(data)
-  //   return data
-  // } catch(err) {
-  //   throw err
-  // }
-
+  console.log('BEFORE complete -->', done)
   fetch(`${BASE_URL}${todoId}`, {
     method: 'PATCH',
     body: JSON.stringify({
@@ -48,7 +49,7 @@ export const completeTodo = async(todoId, done) => {
     },
   })
   .then((response) => response.json())
-  .then((json) => console.log(json));
+  .then((json) => console.log('Complete Todo --> ', json));
 }
 
 
@@ -63,5 +64,5 @@ export const editTodo = async(todoId) => {
     },
   })
   .then((response) => response.json())
-  .then((json) => console.log(json));
+  .then((json) => console.log('Edit Todo --> ',json));
 }
