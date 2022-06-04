@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 const AddTodo = (props) => {
 
-  // const[todo, setTodo] = useEffect('')
+  // const[todo, setTodo] = useState('')
+
+  const handleSubmit = async() => {
+    try{
+
+    } catch(err) {
+      throw err
+    }
+  }
 
   return (
     <div className="w-3/4 mx-auto shadow mt-10 px-4 py-4 rounded border border-gray-300 flex">
