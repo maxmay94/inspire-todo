@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Todo = ({todo, id, handleDeleteTodo}) => {
+const Todo = ({todo, handleDeleteTodo, handleCompleteTodo}) => {
 
   let decoration = +!todo.completed && 'line-through'
 
@@ -17,14 +17,24 @@ const Todo = ({todo, id, handleDeleteTodo}) => {
       </h1>
 
       <div className='flex mt-2'>
-        <button className='bg-green-600 hover:bg-green-700 p-1 rounded flex-1 mx-2'>{todo.completed ? 'Mark it done!' : 'oops, did\'t do it'}</button>
-        <button className='bg-yellow-600 hover:bg-yellow-700 p-1 rounded flex-1 mx-2'>edit Todo</button>
+        <button 
+          className='bg-green-600 hover:bg-green-700 p-1 rounded flex-1 mx-2'
+          onClick={() => handleCompleteTodo(todo.id, todo.completed)}
+        >
+          {todo.completed ? 'Mark it done!' : 'Did\'t actually do it yet'}
+        </button>
+        
+        <button 
+          className='bg-yellow-600 hover:bg-yellow-700 p-1 rounded flex-1 mx-2'
+        >
+          Edit Todo
+        </button>
 
         <button 
           className='bg-red-600 hover:bg-red-700 p-1 rounded flex-1 mx-2'
-          onClick={() => handleDeleteTodo(id)}
+          onClick={() => handleDeleteTodo(todo.id)}
         >
-            delete Todo
+            Delete Todo
         </button>
 
       </div>
